@@ -1,0 +1,25 @@
+package mywebapp;
+
+import java.io.IOException;
+
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+public class Home extends HttpServlet{
+
+	@Override
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		HttpSession session =req.getSession();
+		String email=(String)session.getAttribute("email");
+		
+		if(email!=null) {
+			req.getRequestDispatcher("Home.html").forward(req, resp);
+		}
+		else
+			req.getRequestDispatcher("Login.html").forward(req, resp);
+	}
+	
+}
